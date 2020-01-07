@@ -110,24 +110,3 @@ extern "C" {
 }
 
 
-//FILE * pConsole;
-//AllocConsole();
-//freopen_s(&pConsole, "CONOUT$", "wb", stdout);
-//printf("device type not image %s\n", headerMsg->GetDeviceType());
-				//FILE * pConsole;
-				//AllocConsole();
-				//freopen_s(&pConsole, "CONOUT$", "wb", stdout);
-				//printf("I'm called \n");
-				//printf("ScalarPointerAddress is %p\n", imgMsg->GetScalarPointer());
-				//printf("BodyPointerAddress is %p\n", imgMsg->GetPackBodyPointer());
-				//printf("GetPackBodySize is %p\n", imgMsg->GetPackBodySize());
-				//uint8_t* ptr = (uint8_t*)imgMsg->GetScalarPointer();
-				//for (int i = 0; i <= 9000; i++) {
-				//	uint8_t val = *(ptr+i);
-				//	printf("%d %d \n", i,val);
-				//}
-			//FILE * pConsole;
-			//AllocConsole();
-			//freopen_s(&pConsole, "CONOUT$", "wb", stdout);
-			//printf("device type Image \n");
-			// Create a message buffer to receive transform data
