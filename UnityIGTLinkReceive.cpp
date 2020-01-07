@@ -21,8 +21,9 @@ igtl::ClientSocket::Pointer Unityclientsocket;
 extern "C" {
 	typedef void(_stdcall* CallbackImage)(void* ImageDataPointer);
 	UnityIGTLinkReceiveAPI void _stdcall GetImage(CallbackImage GetImageData)
-	//---------------------------------------------------------------------------
+		//---------------------------------------------------------------------------
 	{
+
 		// Create a message buffer to receive header
 		igtl::MessageHeader::Pointer headerMsg;
 		headerMsg = igtl::MessageHeader::New();
@@ -82,12 +83,12 @@ extern "C" {
 		{
 			Unityclientsocket->Skip(headerMsg->GetBodySizeToRead(), 0);
 		}
+
 	}
 	typedef void(_stdcall* CallbackReceiver)(int Cvalue);
 	UnityIGTLinkReceiveAPI void _stdcall ReceiverConnect(char*  hostname, int clientport, CallbackReceiver ReceiverConnectionStatus)
-	//UnityIGTLinkReceiveAPI void ReceiverConnect(char*  hostname, int clientport, void(*ReceiverConnectionStatus)(int Cvalue))
+		//UnityIGTLinkReceiveAPI void ReceiverConnect(char*  hostname, int clientport, void(*ReceiverConnectionStatus)(int Cvalue))
 	{
-			
 		igtl::ClientSocket::Pointer clientsocket;
 		clientsocket = igtl::ClientSocket::New();
 		int j = clientsocket->ConnectToServer(hostname, clientport);
@@ -97,11 +98,17 @@ extern "C" {
 		{
 			ReceiverConnectionStatus(1);
 		}
+
 		//------------------------------------------------------------
 		// Close connection (The example code never reaches this section ...)
 		// clientsocket->CloseSocket();
 	}
+	UnityIGTLinkReceiveAPI void _stdcall CloseReceiveSocket()
+	{
+		Unityclientsocket->CloseSocket();
+	}
 }
+
 
 //FILE * pConsole;
 //AllocConsole();

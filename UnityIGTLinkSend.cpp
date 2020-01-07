@@ -21,8 +21,10 @@ igtl::TimeStamp::Pointer ts;
 extern "C" {
 	typedef void(_stdcall* CallbackServer)(int Svalue);
 	UnityIGTLinkSendAPI void _stdcall ServerConnect(int serverport, double fps, CallbackServer ServerConnectionStatus)
-	//UnityIGTLinkSendAPI void ServerConnect(int serverport, double fps, void(*ServerConnectionStatus)(int Svalue))
+		//UnityIGTLinkSendAPI void ServerConnect(int serverport, double fps, void(*ServerConnectionStatus)(int Svalue))
 	{
+
+
 		//int interval = (int)(1000.0 / fps);
 
 		// Establish Connection
@@ -30,12 +32,13 @@ extern "C" {
 		serversocket = igtl::ServerSocket::New();
 		int r = serversocket->CreateServer(serverport);
 		UnityServerSocket = serversocket;
-		UnitySendSocket = serversocket->WaitForConnection(100000);
-		
+		UnitySendSocket = serversocket->WaitForConnection(10000);
+
 		if (UnitySendSocket.IsNotNull())
 		{
-		ServerConnectionStatus(1);
+			ServerConnectionStatus(1);
 		}
+
 	}
 	//------------------------------------------------------------------------------------------------------------------------
 
@@ -57,6 +60,11 @@ extern "C" {
 		//igtl::Sleep(1); // wait
 	    // Close connection
         //socket->CloseSocket();
+	}
+	UnityIGTLinkSendAPI void _stdcall CloseSendSocket()
+	{
+		UnityServerSocket->CloseSocket();
+		UnitySendSocket->CloseSocket();		
 	}
 	//------------------------------------------------------------
 	void SendNeedleToReference(igtl::Matrix4x4& Nmatrix, igtl::ServerSocket::Pointer serversocket, igtl::Socket::Pointer clientsocket)
@@ -157,6 +165,9 @@ extern "C" {
 		SendKidneyToReference(Kmatrix, UnityServerSocket, UnitySendSocket);
 		SendGelblockToReference(Gmatrix, UnityServerSocket, UnitySendSocket);
 	}
+
 	//-----------------------------------------------------------------------------------------------------------------------
+
 }
+
 	
