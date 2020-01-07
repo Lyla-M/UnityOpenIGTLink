@@ -166,8 +166,7 @@ extern "C" {
 		SendGelblockToReference(Gmatrix, UnityServerSocket, UnitySendSocket);
 	}
 
-	//-----------------------------------------------------------------------------------------------------------------------
-
+	
 }
 
 	
